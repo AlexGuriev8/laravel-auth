@@ -40,8 +40,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                                    <a class="nav-link" >Post</a>
-                                </li>
+                                    <a class="nav-link" href="{{ route('posts.guest.home') }}">Post</a>
+                        </li>
+                      
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -63,7 +64,13 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                     <a class="dropdown-item" href="{{ route('posts.create') }}">
+                                        {{('Create Post')}}
+                                    </a>
+                                     <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                        {{('Modifica Post')}}
+                                    </a>
+                                
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
