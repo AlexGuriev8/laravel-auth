@@ -13,40 +13,43 @@
 <form action="{{route('posts.update',$post->id)}}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PATCH')
+<div class="container">
     <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <img src="{{asset('storage/'.$post->img)}}" alt="{{$post->slug}}" width="300px" class="ml-10">
-      </div>
-      
+          <div class="col-md-6 mb-3">
+              <img src="{{asset('storage/'.$post->img)}}" alt="{{$post->slug}}" width="300px" class="ml-10">
+          </div>
     </div>
-    <div class="container">
-       <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <input type="file"  class="form-control"  name="img">
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <input type="file"  class="form-control"  name="img">
+        </div>
+    </div>       
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="title">Titolo</label>
+          <input type="text" placeholder="Titolo" class="form-control"  name="title" value="{{old('title')}}">
+        </div>
     </div>
-  </div>       
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="title">Titolo</label>
-      <input type="text" placeholder="Titolo" class="form-control"  name="title" value="{{old('title')}}">
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="body">Body</label>
+          <textarea placeholder="Descrizione" class="form-control" name="body"  cols="30" rows="10">{{old('body')}}</textarea>
+        </div>
     </div>
-  </div>
- 
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="body">Body</label>
-      <textarea placeholder="Descrizione" class="form-control" name="body"  cols="30" rows="10">{{old('body')}}</textarea>
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            @foreach ($tags as $tag)
+                <label for="tag">{{$tag->name}}</label> 
+                <input type="checkbox" name="tags[]" value="{{$tag->id}}"{{($post->tags->contains($tag->id)) ? 'checked' : ''}}>
+            @endforeach
+        </div>
     </div>
-  </div>
-   <div class="form-row">
-     <div class="col-md-6 mb-3">
-        @foreach ($tags as $tag)
-           <label for="tag">{{$tag->name}}</label> 
-     <input type="checkbox" name="tags[]" value="{{$tag->id}}"{{($post->tags->contains($tag->id)) ? 'checked' : ''}}>
-        @endforeach
-     </div>
-  </div>
-  <button class="btn btn-primary" type="submit">EDIT</button>
-</form>
-    </div>
+
+    <button class="btn btn-primary" type="submit">EDIT</button>
+    </form>
+</div>   
 @endsection
