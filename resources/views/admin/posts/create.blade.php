@@ -10,7 +10,7 @@
 @endif
 
 @section('content')
-<form action="{{route('posts.store')}}" method="POST">
+<form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('POST')
     <div class="container">       
@@ -18,6 +18,12 @@
     <div class="col-md-6 mb-3">
       <label for="title">Titolo</label>
       <input type="text" placeholder="Titolo" class="form-control"  name="title" value="{{old('title')}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="img">Immagine</label>
+      <input accept="image/*" type="file" class="form-control"  name="img" value="{{old('title')}}">
     </div>
   </div>
   <div class="form-row">
