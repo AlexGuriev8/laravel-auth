@@ -21,6 +21,7 @@ class PostsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $newPost = new Post;
             $newPost->title = $faker->sentence(3);
+            $newPost->img = $faker->imageUrl(640,480);
             $newPost->body = $faker->text(500);
             $newPost->slug = Str::slug($newPost->title);
             $newPost->user_id = $users->random()->id;
